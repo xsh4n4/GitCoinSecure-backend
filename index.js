@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -14,8 +15,10 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 let bounties = [ /* your mock bounties */ ];
 let submissions = [ /* your mock submissions */ ];
